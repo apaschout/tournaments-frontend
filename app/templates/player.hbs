@@ -1,0 +1,5 @@
+<ul class="w3-ul w3-card w3-hoverable w3-dark-gray w3-margin-top" style="width: 50%;margin:auto;">
+    {{#each @model.properties as |prop|}}
+    <li class="w3-hover-gray">{{prop.label}}: {{prop.value}}</li>
+    {{/each}}
+</ul>

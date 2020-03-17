@@ -1,0 +1,7 @@
+<ul class="w3-ul w3-card w3-hoverable w3-dark-gray w3-margin-top" style="width: 50%;margin-left:auto;margin-right:auto;">
+    {{#each @tournaments-list.items as |trn|}}
+    <LinkTo @route="tournament" @model={{trn.id}} style="text-decoration: none;">
+        <li class="w3-hover-gray">{{trn.label}}</li>
+    </LinkTo>
+    {{/each}}
+</ul>
