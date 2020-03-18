@@ -1,0 +1,22 @@
+<table class="w3-table w3-bordered w3-border" id="standings">
+    <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Matches</th>
+        <th>Match Wins</th>
+        <th>Games</th>
+        <th>Game Wins</th>
+    </tr>
+    {{#each (getParticipants @model) as |part|}}
+    <tr>
+        <td>
+            <div class="medal flex-container">index</div>
+        </td>
+        <td><a target="_blank">{{propertyByName part "name"}}</a></td>
+        <td>{{propertyByName part "matches"}}</td>
+        <td>{{propertyByName part "matchWins"}}</td>
+        <td>{{propertyByName part "games"}}</td>
+        <td>{{propertyByName part "gameWins"}}</td>
+    </tr>
+    {{/each}}
+</table>

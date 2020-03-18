@@ -13,4 +13,6 @@ Router.map(function() {
   this.route('tournaments');
   this.route('tournament', {path: 'tournaments/:id'})
   this.route('decks');
+  this.route('stats', {path: 'stats/:id'});
+  this.route('standing', {path: 'standings/:id'});
 });

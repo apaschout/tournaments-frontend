@@ -1,1 +1,6 @@
-{{outlet}}
+<select>
+    <option selected=""></option>
+    {{#each @model.items as |trn|}}
+        <option onclick={{action "changeRoute" trn.id}}>{{propertyByName trn "name"}}</option>
+    {{/each}}
+</select>

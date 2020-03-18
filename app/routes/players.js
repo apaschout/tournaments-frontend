@@ -1,4 +1,6 @@
 import Route from '@ember/routing/route';
+import jQuery from 'jquery';
+import { action } from '@ember/object';
 
 export default class PlayersRoute extends Route {
     async model() {
