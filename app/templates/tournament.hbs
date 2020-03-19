@@ -1,2 +1,5 @@
-{{#if (eq (propertyByName @model "phase") "initialization")}}
+{{#let (propertyByName @model "phase") as |phase|}}
+{{#if (eq phase "initialization")}}
+<InitializationView @initialization-view={{@model}}></InitializationView>
 {{/if}}
+{{/let}}

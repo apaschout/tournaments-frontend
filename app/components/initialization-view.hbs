@@ -1,0 +1,107 @@
+<div class="w3-container w3-margin-top" style="width: 40%; margin: auto;background-color: #303030;">
+    <h2 class="w3-center">{{@initialization-view.label}}</h2>
+    <div class="flex-container" style="width: 90%; margin:auto; justify-content: space-between;">
+        <p>Current Phase: {{propertyByName @initialization-view "phase"}}</p>
+        {{#let (actionByRel @initialization-view "delete") as |delAction|}}
+        <div id="{{delAction.rel}}-modal" class="w3-modal">
+            <div class="w3-modal-content" style="width: 33%;">
+                <form class="w3-container w3-dark-gray" id="form-{{delAction.rel}}" action="{{delAction.href}}"
+                    method="{{delAction.method}}">
+                    <span onclick='document.getElementById("{{delAction.rel}}-modal").style.display="none"'
+                        class="w3-button w3-display-topright">&times;</span>
+                    <h2 class="w3-center">Are you sure about that?</h2>
+                    <input type="hidden" name="@action" value="{{delAction.rel}}">
+                    <div class="flex-container w3-margin-bottom">
+                        <div class="neon-button-green w3-margin-left"
+                            onclick='document.getElementById("form-{{delAction.rel}}").submit()'>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            YES
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="neon-button-red w3-margin-left"
+            onclick='document.getElementById("{{delAction.rel}}-modal").style.display="block"'>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            DELETE
+        </div>
+        {{/let}}
+    </div>
+    {{#let (actionByRel @initialization-view "change-name") as |cnAction|}}
+    {{#if cnAction}}
+    <div class="w3-container w3-dark-gray w3-margin-top" style="width:90%; margin:auto;">
+        <h4 class="w3-center">{{cnAction.label}}</h4>
+        {{#let (propertyByName @initialization-view "name") as |name|}}
+        <Input @type="text" @value={{this.name}} />
+        <div class="neon-button w3-margin-left" onclick={{action "postAs" cnAction @initialization-view.id this.name}}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            CHANGE
+        </div>
+        {{/let}}
+    </div>
+    {{/if}}
+    {{/let}}
+    {{#let (actionByRel @initialization-view "change-format") as |fAction|}}
+    {{#if fAction}}
+    <div class="w3-container w3-dark-gray w3-margin-top" style="width:90%; margin:auto;">
+        <h4 class="w3-center">{{fAction.label}}</h4>
+        <form id="form-{{fAction.rel}}" action="{{fAction.href}}" method="{{fAction.method}}"
+            style="display: flex; align-items: center; justify-content: flex-start;">
+            <input type="hidden" name="@action" value="{{fAction.rel}}">
+            {{#each fAction.parameters as |param|}}
+            <select class="w3-margin-top w3-margin-bottom" name="{{param.name}}" style="width: 40%;"
+                onchange={{action "setFormatSelection" value="target.value"}}>
+                <option></option>
+                <option value="cube">Cube</option>
+            </select>
+            {{/each}}
+        </form>
+    </div>
+    {{/if}}
+    {{/let}}
+    {{#let (propertyByName @initialization-view "gamesToWin") (actionByRel @initialization-view "change-gamestowin") as |n g2wAction|}}
+    {{#if g2wAction}}
+    <div class="w3-container w3-dark-gray w3-margin-top" style="width:90%; margin:auto;">
+        <h4 class="w3-center">{{g2wAction.label}}</h4>
+        <form class="flex-container" id="form-{{g2wAction.rel}}" action="{{g2wAction.href}}"
+            method="{{g2wAction.method}}" style="justify-content: flex-start;">
+            <input type="hidden" name="@action" value="{{g2wAction.rel}}">
+            {{#each g2wAction.parameters as |param|}}
+            <select class="w3-margin-top w3-margin-bottom" name="{{param.name}}" style="width: 40%;"
+                onchange='document.getElementById("form-{{g2wAction.rel}}").submit()'>
+                <option></option>
+                <option value="1">Single</option>
+                <option value="2">Best Of 3</option>
+                <option value="3">Best of 5</option>
+            </select>
+            {{/each}}
+        </form>
+    </div>
+    {{/if}}
+    {{/let}}
+    {{#let (actionByRel @initialization-view "end-phase") as |endAction|}}
+    {{#if endAction}}
+    <form class="flex-container w3-margin-top" id="form-{{endAction.rel}}" action="{{endAction.href}}"
+        method="{{endAction.method}}">
+        <input type="hidden" name="@action" value="{{endAction.rel}}">
+        <div class="neon-button w3-margin-left" onclick={{action "postAs" endAction.rel @initialization-view.id}}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            GO TO REGISTRATION
+        </div>
+    </form>
+    {{/if}}
+    {{/let}}
+</div>

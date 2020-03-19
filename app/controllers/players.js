@@ -16,5 +16,6 @@ export default class PlayersController extends Controller {
                 route.refresh()
             },
         })
+        .fail(function(){alert(r.responseText)})
     }
 }

@@ -15,5 +15,6 @@ export default class TournamentsController extends Controller {
                 route.refresh()
             },
         })
+        .fail(function(){alert(r.responseText)})
     }
 }
