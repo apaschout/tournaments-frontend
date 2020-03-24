@@ -94,7 +94,7 @@
     <form class="flex-container w3-margin-top" id="form-{{endAction.rel}}" action="{{endAction.href}}"
         method="{{endAction.method}}">
         <input type="hidden" name="@action" value="{{endAction.rel}}">
-        <div class="neon-button w3-margin-left" onclick={{action "postAs" endAction.rel @initialization-view.id}}>
+        <div class="neon-button w3-margin-left" onclick={{action "postAs" endAction @initialization-view.id}}>
             <span></span>
             <span></span>
             <span></span>

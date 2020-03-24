@@ -16,6 +16,7 @@ export default class InitializationViewComponent extends Component {
             data[act.parameters[0].name] = arg
         }
         let route = getOwner(this).lookup('route:tournament')
+        console.log(data)
         let r = jQuery.ajax({
             method: "POST",
             url: `http://127.0.0.1:8080/api/tournaments/${id}`,

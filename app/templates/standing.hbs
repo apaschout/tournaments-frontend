@@ -10,7 +10,7 @@
     {{#each (getParticipants @model) as |part|}}
     <tr>
         <td>
-            <div class="medal flex-container">index</div>
+            <div class="medal flex-container">{{index}}</div>
         </td>
         <td><a target="_blank">{{propertyByName part "name"}}</a></td>
         <td>{{propertyByName part "matches"}}</td>
@@ -18,5 +18,6 @@
         <td>{{propertyByName part "games"}}</td>
         <td>{{propertyByName part "gameWins"}}</td>
     </tr>
+    {{action "incrementIndex"}}
     {{/each}}
 </table>
