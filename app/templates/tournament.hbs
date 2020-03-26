@@ -1,5 +1,5 @@
 {{#let (propertyByName @model "phase") as |phase|}}
 {{#if (eq phase "initialization")}}
-<InitializationView @initialization-view={{@model}}></InitializationView>
+<InitializationView @hyper={{@model}}></InitializationView>
 {{/if}}
 {{/let}}

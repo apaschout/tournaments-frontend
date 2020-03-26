@@ -4,13 +4,11 @@ import { getOwner } from '@ember/application';
 import jQuery from 'jquery';
 
 export default class InitializationViewComponent extends Component {
-    formatSelectedOption = null
-    @action setFormatSelection(selected) {
-        this.formatSelectedOption = selected
-        console.log(this.formatSelectedOption)
-        this.postAs()
-    }
+    formats = ["cube"]
+    gamesToWin = [1, 2, 3]
+    
     @action postAs(act, id, arg) {
+        console.log(arg)
         let data = { "@action": act.rel }
         if (act.rel == "change-name" || act.rel == "change-gamestowin" || act.rel == "change-format") {
             data[act.parameters[0].name] = arg

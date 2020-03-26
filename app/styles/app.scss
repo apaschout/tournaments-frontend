@@ -401,3 +401,6 @@ html {
 .greenMatchSquare{
     background-color: green;
 }
+@import 'ember-power-select/themes/material';
+$ember-power-select-text-color: #031321;
+@import "ember-power-select";
