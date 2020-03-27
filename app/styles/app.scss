@@ -401,6 +401,13 @@ html {
 .greenMatchSquare{
     background-color: green;
 }
+
+.darkBlueBG{
+    background-color: #031321 !important;
+}
 @import 'ember-power-select/themes/material';
 $ember-power-select-text-color: #031321;
 @import "ember-power-select";
+
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";

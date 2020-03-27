@@ -24,14 +24,32 @@
                 </form>
             </div>
         </div>
-        <div class="neon-button-red w3-margin-left"
-            onclick='document.getElementById("{{delAction.rel}}-modal").style.display="block"'>
+        <div class="neon-button-red w3-margin-left" onclick={{action "toggleDelModal"}}>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             DELETE
         </div>
+        {{#if this.showingDelModal}}
+        {{#modal-dialog
+            onClose=(action "toggleDelModal")
+            targetAttachment="center"
+            translucentOverlay=true
+            containerClass="darkBlueBG"
+        }}
+        Are You Sure About That?
+        <div class="flex-container">
+            <div class="neon-button-red" onclick={{action "postAs" delAction @hyper.id}}>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                YES
+            </div>
+        </div>
+        {{/modal-dialog}}
+        {{/if}}
         {{/let}}
     </div>
     {{#let (actionByRel @hyper "change-name") as |cnAction|}}
@@ -39,7 +57,7 @@
     <div class="w3-container w3-dark-gray w3-margin-top" style="width:90%; margin:auto;">
         <h4 class="w3-center">{{cnAction.label}}</h4>
         {{#let (propertyByName @hyper "name") as |name|}}
-        <Input @type="text" @value={{this.name}} @placeholder={{propertyByName @hyper "name"}}/>
+        <Input @type="text" @value={{this.name}} @placeholder={{propertyByName @hyper "name"}} />
         <div class="neon-button w3-margin-left" onclick={{action "postAs" cnAction @hyper.id this.name}}>
             <span></span>
             <span></span>
