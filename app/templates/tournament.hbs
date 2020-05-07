@@ -1,5 +1,7 @@
 {{#let (propertyByName @model "phase") as |phase|}}
 {{#if (eq phase "initialization")}}
 <InitializationView @hyper={{@model}}></InitializationView>
+{{else if (eq phase "registration")}}
+<RegistrationView @hyper={{@model}}></RegistrationView>
 {{/if}}
 {{/let}}
