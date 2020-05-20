@@ -1,0 +1,15 @@
+<h2 class="w3-center">{{@hyper.label}}</h2>
+<ul class="w3-ul w3-card w3-gray">
+{{#each @hyper.items as |player|}}
+    <li onclick={{action addPlayer player.id}}>{{propertyByName player "name"}}</li>
+{{/each}}
+</ul>
+<div class="flex-container w3-padding">
+    <div class="neon-button-green" onclick=''>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        ADD
+    </div>
+</div>

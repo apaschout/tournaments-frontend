@@ -18,9 +18,16 @@ export default class RegistrationViewComponent extends Component {
         this.showingRegModal = !this.showingRegModal
     }
     
-    @action postAs(act, id) {
+    @action postAs(act, id, pid) {
         let compThis = this
-        let data = { "@action": act.rel }
+        if (act.parameters.length != 0) {
+            var data = {
+                "@action": act.rel,
+                "pid": pid,
+            }
+        } else {
+            var data = {"@action": act.rel}
+        }
         let route = getOwner(this).lookup('route:tournament')
         console.log(data)
         let r = jQuery.ajax({
@@ -35,6 +42,9 @@ export default class RegistrationViewComponent extends Component {
                     route.refresh()
                 }
             },
-        }).fail(function () { alert(r.responseText) })
+        }).fail(function() {
+            alert(r.responseText)
+            console.log(data)
+        })
     }
 }

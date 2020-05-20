@@ -33,18 +33,18 @@
     </div>
     <p class="w3-margin-bottom" style="width: 90%; margin:auto;">Format:
         {{propertyByName @hyper "format"}}</p>
-    {{#each @hyper.items as |item|}}
+    {{#each @hyper.items as |participantsItem|}}
     <div class="w3-container w3-dark-gray w3-padding" style="width:90%; margin:auto;">
-        <h4 class="w3-center">{{item.label}}</h4>
+        <h4 class="w3-center">{{participantsItem.label}}</h4>
         <ul class="w3-ul w3-card w3-hoverable w3-gray w3-margin-top">
-            {{#each item.players as |player|}}
+            {{#each participantsItem.items as |player|}}
             <li class="w3-hoverable">
                 <div class="flex-container" style="justify-content: space-between;">
                     <a href='{{linkByRel player "details"}}' target="_blank"
                         style="text-decoration: none;">{{propertyByName player "name"}}
                     </a>
-                    {{#let actionByRel (@hyper "drop-player") as |dropAction|}}
-                    <div class="neon-button-red" onclick={{action "postAs" dropAction player.id}}>
+                    {{#let (actionByRel @hyper "drop-player") as |dropAction|}}
+                    <div class="neon-button-red" onclick={{action "postAs" dropAction @hyper.id player.id}}>
                         <span></span>
                         <span></span>
                         <span></span>
@@ -58,14 +58,16 @@
         </ul>
         {{#let (actionByRel @hyper "register-player") as |regAction|}}
         {{#if this.showingRegModal}}
+        {{#async-await (fetchPlayers) as |plrs|}}
         {{#modal-dialog
             onClose=(action "toggleRegModal")
             targetAttachment="center"
             translucentOverlay=true
             containerClass="darkBlueBG"
         }}
-        To be developed
+        <PlayerReg @hyper={{plrs}}></PlayerReg>
         {{/modal-dialog}}
+        {{/async-await}}
         {{/if}}
         <div class="flex-container w3-padding">
             <div class="neon-button" onclick={{action "toggleRegModal"}}>
